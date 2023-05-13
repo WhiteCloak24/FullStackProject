@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const Roles = [
+  { name: "Doctor", value: "doctor" },
+  { name: "HR", value: "hr" },
+  { name: "Staff", value: "staff" },
+];
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    if(email==='yash@gmail.com' && password==='111111'){
-        setShowError(false)
-    }else{
-        setShowError(true)
+    if (
+      email === "staff@gmail.com" &&
+      password === "111111" &&
+      role === "staff"
+    ) {
+      setShowError(false);
+      navigate('/dashboard');
+    } else {
+      setShowError(true);
     }
   };
   return (
@@ -74,13 +86,29 @@ const Login = () => {
             />
           </div>
         </div>
+        <div className="d-flex justify-content-center gap-5">
+          <div className="d-flex bg--blue-1 pt-1 pb-1 px-3 w-20 ">Role</div>
+          <div className="d-flex">
+            <select
+              name="role"
+              id="role"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="">Select Option</option>
+              {Roles &&
+                Roles.map((role) => {
+                  return <option value={role.value}>{role.name}</option>;
+                })}
+            </select>
+          </div>
+        </div>
         <div
           style={{
             height: "100px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection:'column'
+            flexDirection: "column",
           }}
         >
           <div
@@ -93,7 +121,7 @@ const Login = () => {
           >
             Login
           </div>
-          {showError &&  <p style={{color:'red'}} >Invalid Credentials</p> }
+          {showError && <p style={{ color: "red" }}>Invalid Credentials</p>}
         </div>
       </div>
     </div>

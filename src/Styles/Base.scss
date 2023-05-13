@@ -1,0 +1,20 @@
+.content{
+    display: flex;
+    height: 100vh;
+}
+.c{
+    &--pointer{
+        cursor: pointer;
+    }
+}
+.sidebar-item{
+    &:hover{
+        transition: all 0.5s;
+        background: $blue-1;
+        color: $white-1;
+    }
+    &.active{
+        background: $blue-1;
+        color: $white-1;
+    }
+}
