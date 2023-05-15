@@ -20,9 +20,11 @@ const Login = () => {
       role === "staff"
     ) {
       setShowError(false);
-      navigate('/dashboard');
-    } else {
-      setShowError(true);
+      navigate("/dashboard", { state: { role: role } });
+    }
+    if (email === "hr@gmail.com" && password === "111111" && role === "hr") {
+      setShowError();
+      navigate("/dashboard", { state: { role: role } });
     }
   };
   return (

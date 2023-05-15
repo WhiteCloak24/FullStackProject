@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { HiUserAdd } from "react-icons/hi";
+import { useLocation } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 
 const Dashboard = () => {
   const [ActiveMenu, setActiveMenu] = useState("");
+  const location = useLocation()
+  console.log(location)
   const isActive = (tab) => {
     switch (tab) {
       case ActiveMenu:
