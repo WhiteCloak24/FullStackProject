@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { HiUserAdd } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import AddUser from "./AddUser";
 
 const Dashboard = () => {
   const [ActiveMenu, setActiveMenu] = useState("");
   const [role, setRole] = useState("");
-  const[aadhar,setAadhar] = useState('')
-  const location = useLocation();
+  const [aadhar, setAadhar] = useState("");
+
   useEffect(() => {
-    if (location?.state && location.state?.role) {
-      setRole(location.state.role);
-    }
-  }, [location?.state]);
+    setRole(localStorage.getItem("role"));
+  }, []);
+
   const isActive = (tab) => {
     switch (tab) {
       case ActiveMenu:
@@ -22,9 +22,9 @@ const Dashboard = () => {
         break;
     }
   };
-  const setAddharHandler=(e)=>{
-      setAadhar(e.target.value)
-  }
+  const setAddharHandler = (e) => {
+    setAadhar(e.target.value);
+  };
   return (
     <div className="content flex-column">
       <nav className="w-100 h--90 border">
@@ -80,8 +80,9 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-        <div className="d-flex justify-content-center">
-          <div>
+        <div className="d-flex justify-content-center w-100">
+          {role === "hr" && <AddUser />}
+          {/* <div>
             <input
               type="text"
               name="name"
@@ -107,8 +108,14 @@ const Dashboard = () => {
             ></textarea>
           </div>
           <div>
-            <input type="text" value={aadhar} name="aadhar" id="" onChange={setAddharHandler} />
-          </div>
+            <input
+              type="text"
+              value={aadhar}
+              name="aadhar"
+              id=""
+              onChange={setAddharHandler}
+            />
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../Helpers/apiFunctions";
+import swal from "sweetalert";
 
 const Roles = [
   { name: "Doctor", value: "doctor" },
@@ -13,18 +16,18 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (
-      email === "staff@gmail.com" &&
-      password === "111111" &&
-      role === "staff"
-    ) {
-      setShowError(false);
-      navigate("/dashboard", { state: { role: role } });
-    }
-    if (email === "hr@gmail.com" && password === "111111" && role === "hr") {
-      setShowError();
-      navigate("/dashboard", { state: { role: role } });
+  const { mutateAsync } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: login,
+  });
+  const handleLogin = async () => {
+    let payload = { email, password, role };
+    let res = await mutateAsync(payload);
+    if (res?.ResponseCode === "1") {
+      localStorage.setItem("role", res.role);
+      navigate("/dashboard");
+    } else {
+      swal({ icon: "error", text: "Invalid Credentials" });
     }
   };
   return (
