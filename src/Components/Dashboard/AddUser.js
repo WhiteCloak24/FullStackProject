@@ -4,8 +4,8 @@ import { register } from "../../Helpers/apiFunctions";
 import swal from "sweetalert";
 
 const Roles = [
-  { name: "Doctor", value: "doctor" },
-  { name: "Staff", value: "staff" },
+  { name: "Doctor", value: "DOCTOR" },
+  { name: "Staff", value: "STAFF" },
 ];
 
 const AddUser = () => {

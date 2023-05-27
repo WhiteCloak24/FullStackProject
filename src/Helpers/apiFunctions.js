@@ -22,3 +22,14 @@ export const register = async (data) => {
   res = await res.json()
   return res;
 };
+export const getDoctors = async (data) => {
+  let res = await fetch("http://localhost:4000/users/doctors-list", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+  res = await res.json()
+  return res;
+};

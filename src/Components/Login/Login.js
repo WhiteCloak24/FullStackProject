@@ -5,9 +5,9 @@ import { login } from "../../Helpers/apiFunctions";
 import swal from "sweetalert";
 
 const Roles = [
-  { name: "Doctor", value: "doctor" },
-  { name: "HR", value: "hr" },
-  { name: "Staff", value: "staff" },
+  { name: "Doctor", value: "DOCTOR" },
+  { name: "HR", value: "HR" },
+  { name: "Staff", value: "STAFF" },
 ];
 const Login = () => {
   const [password, setPassword] = useState("");
